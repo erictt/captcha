@@ -1,7 +1,9 @@
 reCAPTCHA
 ==========
 
-## Installation
+* Forked from [anhskohbo/no-captcha](https://github.com/anhskohbo/no-captcha)
+* This repo's purpose is to seperate script and dom which is very useful in vuejs.
+* Still working on it.
 
 ## Installation
 
@@ -10,7 +12,7 @@ Add the following line to the `require` section of `composer.json`:
 ```json
 {
     "require": {
-        "erictt/recaptcha": "dev-master"
+        "erictt/recaptcha": "0.1.0"
     }
 }
 ```
@@ -29,20 +31,20 @@ and the following to `aliases`:
 
 2. Run `php artisan vendor:publish --provider="Erictt\Recaptcha\RecaptchaServiceProvider"`.
 
-3. In `/config/recaptcha.php`, enter your reCAPTCHA public and private keys.
+3. In `/config/recaptcha.php`, enter your reCAPTCHA sitekey and secret keys.
 
 ### Usage
 
 ##### Display reCAPTCHA
 
 ```php
-{!! app('captcha')->display(); !!}
+{!! Recaptcha->display(); !!}
 ```
 
 With custom attributes and language support:
 
 ```
-{!! app('captcha')->display($attributes = [], $lang = null); !!}
+{!! Recaptcha->display($attributes = [], $lang = null); !!}
 ```
 
 ##### Validation
