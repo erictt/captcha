@@ -12,7 +12,7 @@ Add the following line to the `require` section of `composer.json`:
 ```json
 {
     "require": {
-        "erictt/recaptcha": "0.1.1"
+        "erictt/recaptcha": "0.0.3"
     }
 }
 ```

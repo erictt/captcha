@@ -54,7 +54,7 @@ class Recaptcha
     {
         $attributes['data-sitekey'] = $this->sitekey;
 
-        $lang = null;
+        $lang = app('config')->get('recaptcha.lang', null);
         if (array_key_exists('lang', $attributes)) {
             $lang = $attributes['lang'];
         }
