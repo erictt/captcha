@@ -1,10 +1,10 @@
 <?php
 
-namespace Anhskohbo\NoCaptcha;
+namespace Erictt\Recaptcha;
 
 use Illuminate\Support\ServiceProvider;
 
-class NoCaptchaServiceProvider extends ServiceProvider
+class RecaptchaServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -22,13 +22,13 @@ class NoCaptchaServiceProvider extends ServiceProvider
 
         $this->bootConfig();
 
-        $app['validator']->extend('captcha', function ($attribute, $value) use ($app) {
-            return $app['captcha']->verifyResponse($value, $app['request']->getClientIp());
+        $app['validator']->extend('recaptcha', function ($attribute, $value) use ($app) {
+            return $app['recaptcha']->verifyResponse($value, $app['request']->getClientIp());
         });
 
         if ($app->bound('form')) {
-            $app['form']->macro('captcha', function ($attributes = []) use ($app) {
-                return $app['captcha']->display($attributes, $app->getLocale());
+            $app['form']->macro('recaptcha', function ($attributes = []) use ($app) {
+                return $app['recaptcha']->display($attributes, $app->getLocale());
             });
         }
     }
@@ -38,12 +38,12 @@ class NoCaptchaServiceProvider extends ServiceProvider
      */
     protected function bootConfig()
     {
-        $path = __DIR__.'/config/captcha.php';
+        $path = __DIR__.'/config/recaptcha.php';
 
-        $this->mergeConfigFrom($path, 'captcha');
+        $this->mergeConfigFrom($path, 'recaptcha');
 
         if (function_exists('config_path')) {
-            $this->publishes([$path => config_path('captcha.php')]);
+            $this->publishes([$path => config_path('recaptcha.php')]);
         }
     }
 
@@ -52,10 +52,10 @@ class NoCaptchaServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('captcha', function ($app) {
-            return new NoCaptcha(
-                $app['config']['captcha.secret'],
-                $app['config']['captcha.sitekey']
+        $this->app->singleton('recaptcha', function ($app) {
+            return new Recaptcha(
+                $app['config']['recaptcha.secret'],
+                $app['config']['recaptcha.sitekey']
             );
         });
     }

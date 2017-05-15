@@ -1,11 +1,11 @@
 <?php
 
-namespace Anhskohbo\NoCaptcha;
+namespace Erictt\Recaptcha;
 
 use Symfony\Component\HttpFoundation\Request;
 use GuzzleHttp\Client;
 
-class NoCaptcha
+class Recaptcha
 {
     const CLIENT_API = 'https://www.google.com/recaptcha/api.js';
     const VERIFY_URL = 'https://www.google.com/recaptcha/api/siteverify';

@@ -1,10 +1,10 @@
 <?php
 
-namespace Anhskohbo\NoCaptcha\Facades;
+namespace Erictt\Recaptcha\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class NoCaptcha extends Facade
+class Recaptcha extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -13,6 +13,6 @@ class NoCaptcha extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'captcha';
+        return 'recaptcha';
     }
 }

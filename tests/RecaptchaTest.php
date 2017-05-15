@@ -1,20 +1,20 @@
 <?php
 
-use Anhskohbo\NoCaptcha\NoCaptcha;
+use Erictt\Recaptcha\Recaptcha;
 
-class NoCaptchaTest extends PHPUnit_Framework_TestCase
+class RecaptchaTest extends PHPUnit_Framework_TestCase
 {
     private $captcha;
 
     public function setUp()
     {
         parent::setUp();
-        $this->captcha = new NoCaptcha('{secret-key}', '{site-key}');
+        $this->captcha = new Recaptcha('{secret-key}', '{site-key}');
     }
 
     public function testDisplay()
     {
-        $this->assertTrue($this->captcha instanceof NoCaptcha);
+        $this->assertTrue($this->captcha instanceof Recaptcha);
 
         $simple ='<script src="https://www.google.com/recaptcha/api.js" async defer></script>'."\n".
             '<div class="g-recaptcha" data-sitekey="{site-key}"></div>';
