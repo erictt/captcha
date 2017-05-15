@@ -12,7 +12,7 @@ Add the following line to the `require` section of `composer.json`:
 ```json
 {
     "require": {
-        "erictt/recaptcha": "0.1.0"
+        "erictt/recaptcha": "0.1.1"
     }
 }
 ```
@@ -38,13 +38,13 @@ and the following to `aliases`:
 ##### Display reCAPTCHA
 
 ```php
-{!! Recaptcha->display(); !!}
+{!! Recaptcha->display(['dom', 'script']); !!}
 ```
 
-With custom attributes and language support:
-
-```
-{!! Recaptcha->display($attributes = [], $lang = null); !!}
+or seperately
+```php
+{!! Recaptcha->display(['dom']); !!}
+{!! Recaptcha->display(['script']); !!}
 ```
 
 ##### Validation

@@ -45,17 +45,27 @@ class Recaptcha
     /**
      * Render HTML captcha.
      *
+     * @param array  $domOrScript
      * @param array  $attributes
-     * @param string $lang
      *
      * @return string
      */
-    public function display($attributes = [], $lang = null)
+    public function display($domOrScript = ['dom','script'], $attributes = [])
     {
         $attributes['data-sitekey'] = $this->sitekey;
 
-        $html = '<script src="'.$this->getJsLink($lang).'" async defer></script>'."\n";
-        $html .= '<div class="g-recaptcha"'.$this->buildAttributes($attributes).'></div>';
+        $lang = null;
+        if (array_key_exists('lang', $attributes)) {
+            $lang = $attributes['lang'];
+        }
+
+        $html = "";
+        if(in_array('dom', $domOrScript)) {
+            $html .= '<div class="g-recaptcha"'.$this->buildAttributes($attributes).'></div>';
+        }
+        if(in_array('script', $domOrScript)) {
+            $html .= '<script src="'.$this->getJsLink($lang).'" async defer></script>';
+        }
 
         return $html;
     }
