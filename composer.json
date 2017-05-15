@@ -1,7 +1,7 @@
 {
-    "name": "Erictt/no-captcha",
-    "description": "No CAPTCHA reCAPTCHA For Laravel.",
-    "keywords": ["recaptcha", "no-captcha", "captcha", "laravel", "laravel5"],
+    "name": "erictt/recaptcha",
+    "description": "ReCaptcha For Laravel. This repo seperated script and dom which is very helpful for lazyload.",
+    "keywords": ["recaptcha", "laravel", "laravel5", "vuejs"],
     "license": "MIT",
     "authors": [
         {
@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Erictt\\NoCaptcha\\": "src/"
+            "Erictt\\Recaptcha\\": "src/"
         }
     }
 }
