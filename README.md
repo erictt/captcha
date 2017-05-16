@@ -12,7 +12,7 @@ Add the following line to the `require` section of `composer.json`:
 ```json
 {
     "require": {
-        "erictt/recaptcha": "0.0.3"
+        "erictt/recaptcha": "*"
     }
 }
 ```
@@ -41,20 +41,40 @@ and the following to `aliases`:
 {!! Recaptcha->display(['dom', 'script']); !!}
 ```
 
-or seperately
+* or seperately
 ```php
 {!! Recaptcha->display(['dom']); !!}
 {!! Recaptcha->display(['script']); !!}
 ```
 
+* Complete HTML codes:
+```html
+<div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+    <label for="g-recaptcha-response" class="col-md-4 control-label"></label>
+
+    <div class="col-md-6">
+        {!! Recaptcha::display(['dom']) !!}
+        @if ($errors->has('g-recaptcha-response'))
+            <span class="help-block">
+                <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+```
+
 ##### Validation
 
-Add `'g-recaptcha-response' => 'required|captcha'` to rules array.
+Add `'g-recaptcha-response' => 'recaptcha'` to rules array.
+
+PS: I don't think we need `require` rule for this.
 
 ```php
 
 $validate = Validator::make(Input::all(), [
-	'g-recaptcha-response' => 'required|captcha'
+	'g-recaptcha-response' => 'recaptcha'
 ]);
 
 ```
+
+

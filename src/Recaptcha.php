@@ -71,7 +71,7 @@ class Recaptcha
     }
 
     /**
-     * Verify no-captcha response.
+     * Verify recaptcha response.
      *
      * @param string $response
      * @param string $clientIp
@@ -94,7 +94,7 @@ class Recaptcha
     }
 
     /**
-     * Verify no-captcha response by Symfony Request.
+     * Verify recaptcha response by Symfony Request.
      *
      * @param Request $request
      *
