@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | API Keys
@@ -12,5 +11,6 @@ return [
     'secret'    => env('RECAPTCHA_SECRET', ''),
 
     'lang' => 'zh-CN',
+    'curl_timeout' => 1,
 ];
 

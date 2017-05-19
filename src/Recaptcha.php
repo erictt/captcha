@@ -84,13 +84,12 @@ class Recaptcha
             return false;
         }
 
-        $response = $this->sendRequestVerify([
+        return $this->sendRequestVerify([
             'secret' => $this->secret,
             'response' => $response,
             'remoteip' => $clientIp,
         ]);
 
-        return isset($response['success']) && $response['success'] === true;
     }
 
     /**
@@ -129,11 +128,27 @@ class Recaptcha
      */
     protected function sendRequestVerify(array $query = [])
     {
-        $response = $this->http->request('POST', static::VERIFY_URL, [
-            'form_params' => $query,
-        ]);
+        $url = static::VERIFY_URL.'?' . http_build_query($query);
+        $checkResponse = null;
 
-        return json_decode($response->getBody(), true);
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_TIMEOUT, app('config')->get('recaptcha.curl_timeout', 1));
+
+        $checkResponse = curl_exec($curl);
+
+        if(false === $checkResponse) {
+            app('log')->error('[Recaptcha] CURL error: '.curl_error($curl));
+        }
+
+        if (is_null($checkResponse) || empty( $checkResponse )) {
+            return false;
+        }
+
+        $decodedResponse = json_decode($checkResponse, true);
+
+        return $decodedResponse['success'];
     }
 
     /**
